@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Effect : MonoBehaviour
 { 
@@ -22,4 +23,9 @@ public class Effect : MonoBehaviour
         }
     }
 
-} 
+    void OnInteract(InputValue value)
+    {
+        print("Interacting!!!");
+    }
+}
+
