@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 
 public class Effect : MonoBehaviour
 { 
-
     int score = 0;
+    GameObject currentCoin;
 
-    
     void OnCollisionEnter(Collision collision)
     {
         print("Collision detected with " );
         if (collision.gameObject.name == "coin")
         {
+            currentCoin = collision.gameObject;
             score++;
             print($"Current score: {score}");
             Destroy(collision.gameObject);
@@ -23,9 +23,10 @@ public class Effect : MonoBehaviour
         }
     }
 
-    void OnInteract(InputValue value)
+    void OnInteract(InputValue _)
     {
-        print("Interacting!!!");
+        if (currentCoin != null)
+            print("Interacting!!!");
     }
 }
 

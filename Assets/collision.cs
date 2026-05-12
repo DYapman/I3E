@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class collision : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    int score = 0;
+
+    private void OnCollisionEnter(Collision collision)
+    { 
+        Debug.Log("yo");
+        if (collision.gameObject.name.StartsWith("coin")) {
+            score += 1;
+            Destroy(collision.gameObject);
+            Debug.Log($"Coin collected! Score: {score}");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.name.StartsWith("Goal") && (score == 3)) {
+            Debug.Log($"Congratulations, you've got {score} coins. you win!");
+        }
+        else
+        {
+            Debug.Log($"Hey, you need 3 coins! You only have {score} coin(s).");
+        }
     }
 }
